@@ -1,0 +1,13 @@
+name: PixelPerms
+version: '${project.version}'
+main: commandercortex.pixelperms.PixelPerms
+api-version: '1.20'
+load: STARTUP
+authors: [CommanderCortex]
+description: Permissions Plugin for Managing Nodes, Groups, & More
+website: www.github.com/CommanderCortex
+commands:
+  fly:
+    description: Allows staff to fly in any game mode
+  group:
+    description: Sets the players group
