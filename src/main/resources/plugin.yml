@@ -11,3 +11,11 @@ commands:
     description: Allows staff to fly in any game mode
   group:
     description: Sets the players group
+  v:
+    description: Poof
+  gm:
+    description: Builder Gamemode Command
+  broadcast:
+    description:
+  nick:
+    description:

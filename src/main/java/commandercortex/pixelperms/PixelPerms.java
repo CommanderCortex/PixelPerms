@@ -1,8 +1,7 @@
 package commandercortex.pixelperms;
 
 import commandercortex.pixelperms.Global.Chat.OnChatEvent;
-import commandercortex.pixelperms.Local.Commands.FlyCommand;
-import commandercortex.pixelperms.Local.Commands.GroupCommand;
+import commandercortex.pixelperms.Local.Commands.*;
 import commandercortex.pixelperms.Local.Folders.FolderManager;
 import commandercortex.pixelperms.Local.Players.Events.onPlayerJoinEvent;
 import org.bukkit.Bukkit;
@@ -37,6 +36,10 @@ public final class PixelPerms extends JavaPlugin {
     public void Commands(){
         Objects.requireNonNull(Bukkit.getPluginCommand("fly")).setExecutor(new FlyCommand());
         Objects.requireNonNull(Bukkit.getPluginCommand("group")).setExecutor(new GroupCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("v")).setExecutor(new VanishCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("gm")).setExecutor(new GamemodeCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("broadcast")).setExecutor(new BroadcastCommand());
+        Objects.requireNonNull(Bukkit.getPluginCommand("nick")).setExecutor(new NickCommand());
     }
 
     @Override

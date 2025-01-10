@@ -4,10 +4,12 @@ import commandercortex.pixelperms.Local.Players.Messages.Messages;
 import commandercortex.pixelperms.PixelPerms;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
-import java.util.UUID;
+import java.util.*;
 
 public class PermissionsManager {
 
@@ -34,4 +36,10 @@ public class PermissionsManager {
         assert perm != null;
         perm.unsetPermission(permission);
     }
+//    public void purgePermissions(Player player){
+//        for(PermissionAttachmentInfo permissionAttachment : player.getEffectivePermissions()){
+//            //permissionAttachment.getAttachment().unsetPermission(permissionAttachment.getPermission());
+//            permissionAttachment.getAttachment().setPermission(permissionAttachment.getPermission(), false);
+//        }
+//    }
 }

@@ -3,6 +3,7 @@ package commandercortex.pixelperms.Local.Permissions;
 import commandercortex.pixelperms.Local.Players.Data.GetPlayerData;
 import commandercortex.pixelperms.Local.Players.Messages.Messages;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
@@ -27,21 +28,32 @@ public class GroupManager extends Groups{
         try {yaml.save(file);} catch (IOException e) {throw new RuntimeException(e);} // Attempts to save the file
     }
     public String GroupPrefix(String group){
-        if(Objects.equals(group, Developer)) {
+        if(Objects.equals(group, Developer))
             return Messages.C("&7[&4&lDEV&r&7] &r");
-        }else if(Objects.equals(group, Admin)) {
+        if(Objects.equals(group, Admin))
             return Messages.C("&7[&4&lADMIN&r&7] &r");
-        }
+        if(Objects.equals(group, SrMod))
+            return Messages.C("&7[&6&lSR.MOD&r&7] &r");
+        if(Objects.equals(group, Mod))
+            return Messages.C("&7[&6&lMOD&r&7] &r");
+        if(Objects.equals(group, Trainee))
+            return Messages.C("&7[&6&lTRAINEE&r&7] &r");
         return "";
     }
     public int TabListManager(){
         for(Player player : Bukkit.getOnlinePlayers()){
             Scoreboard scoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard();
             for (Player player1 : Bukkit.getOnlinePlayers()){
-                String prefix = GroupPrefix(getGroup(player));
-                Team team = scoreboard.registerNewTeam(player1.getDisplayName());
-                team.setPrefix(prefix);
-                team.addEntry(player1.getDisplayName());
+                if(player1.isInvisible() || player.getGameMode() == GameMode.SPECTATOR){
+                    Team team = scoreboard.registerNewTeam(player1.getDisplayName());
+                    team.removeEntry(player1.getDisplayName());
+                    player.setScoreboard(scoreboard);
+                }else {
+                    String prefix = GroupPrefix(getGroup(player));
+                    Team team = scoreboard.registerNewTeam(player1.getDisplayName());
+                    team.setPrefix(prefix);
+                    team.addEntry(player1.getDisplayName());
+                }
             }
             player.setScoreboard(scoreboard);
         }
